@@ -18,16 +18,25 @@ const flightSchema = new Schema({
     },
     airport: {
         type: String,
-        enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
-        default: 'DEN'
+        default: 'DEN',
+        enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN']
     },
     flightNo: {
         type: Number,
+        required: true,
         min: 10,
         max: 9999
     },
     departs: {
         type: Date,
-        // Missing the default value of 'One year from date created'
+        default: function() {
+            let d = new Date();
+            return d.setFullYear(d.getFullYear() + 1);
+          }
+    },
+    destinations: {
+        type: [destinationSchema]
     }
 });
+
+module.exports = mongoose.model('Flight', flightSchema);
