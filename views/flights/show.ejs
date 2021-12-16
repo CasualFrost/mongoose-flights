@@ -1,13 +1,8 @@
 <%- include('../partials/header') %>
 
-<form action='/flights' method='POST'>
+<form action='/flights/<%= flight._id %>/destinations' method='POST'>
   <h1>Enter Arrival</h1>
-    <!-- <label>Airline</label> -->
-    <!-- <select name='airline'>
-      <option value='American'>American</option>
-      <option value='Southwest'>Southwest</option>
-      <option value='United'>United</option>
-    </select><br><br> -->
+
     <label>Airport</label>
     <select name='airport'>
       <option value='DEN'>DEN</option>
@@ -16,7 +11,6 @@
       <option value='LAX'>LAX</option>
       <option value='SAN'>SAN</option>
     </select><br><br>
-    <!-- <label>Flight Number: <input type='number' name='flightNo'> </label><br><br> -->
     <label>Arrival Date: <input type='date' name='arrival'> </label><br><br>
     <button type="submit">Add Destination</button>
 </form>
@@ -29,23 +23,15 @@
         <tr>
           <th>Airport</th>
           <th>Arrival</th>
-          <!-- <th>Rating</th> -->
         </tr>
       </thead>
       <tbody>
-        <!-- <% let total = 0 %> -->
         <% flight.destinations.forEach(function(f) { %>
-          <!-- <% total += r.rating %> -->
           <tr>
             <td><%= f.airport %></td>
             <td><%= f.arrival %></td>
-            <!-- <td><%= r.rating %></td> -->
           </tr>
         <% }); %>
-        <!-- <tr>
-          <td colspan="2"></td>
-          <td><strong><%= (total / movie.reviews.length).toFixed(1) %></strong></td>
-        </tr> -->
       </tbody>
     </table>
 <% } else { %>
